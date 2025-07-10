@@ -43,5 +43,10 @@ def get_note(note_id):
     return jsonify(note)
 
 
+# Forced code quality error
+#def code_quality_error():
+#print("This isn't going to work")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
