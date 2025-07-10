@@ -12,9 +12,7 @@ pipeline {
             		steps {
                 		bat '''
                 		python -m venv venv
-                		venv\\Scripts\\activate
-                		pip install --upgrade pip
-               			pip install -r requirements.txt
+                		call venv\\Scripts\\activate && pip install --upgrade pip && pip install -r requirements.txt
                			'''
             		}
         	}
@@ -22,7 +20,7 @@ pipeline {
 		stage('Code Quality') {
             		steps {
                 		bat '''
-                		venv\\Scripts\\activate && flake8 --version && flake8 app.py tests/ || exit 1
+                		call venv\\Scripts\\activate && flake8 --version && flake8 app.py tests/ || exit 1
                 		'''
             		}
        		}
@@ -30,8 +28,7 @@ pipeline {
         	stage('Test') {
             		steps {
                 		bat '''
-                		venv\\Scripts\\activate
-                		pytest --cov=app --cov-report=xml
+                		call venv\\Scripts\\activate && pytest --cov=app --cov-report=xml || exit 1
                 		'''
             		}
         	}
@@ -39,8 +36,7 @@ pipeline {
         	stage('Check Coverage') {
             		steps {
                 		bat '''
-                		venv\\Scripts\\activate
-                		coverage report --fail-under=80
+                		call venv\\Scripts\\activate && coverage report --fail-under=80 || exit 1
                 		'''
             		}
         	}
@@ -48,8 +44,7 @@ pipeline {
         	stage('Formatting Check') {
             		steps {
                 		bat '''
-                		venv\\Scripts\\activate
-                		black --check .
+                		call venv\\Scripts\\activate && black --check . || exit 1
                 		'''
             		}
         	}
@@ -57,8 +52,7 @@ pipeline {
         	stage('Build') {
             		steps {
                 		bat '''
-                		venv\\Scripts\\activate
-                		python app.py
+                		call venv\\Scripts\\activate && python app.py
                 		'''
             		}
         	}
