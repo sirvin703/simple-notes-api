@@ -17,7 +17,7 @@ This is a Python Flask API web app for managing notes. This is for HW 3.
     cd simple_notes_api
     ```
 
-2. **Create a virtual environment (recommended)**
+2. **Create a virtual environment**
 
     ```bash
     python -m venv venv
