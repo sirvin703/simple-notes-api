@@ -18,7 +18,7 @@ def test_create_note():
         "title": "Test Note",
         "content": "This is a test note."
     }
-    response = client.app.post('/notes', json=payload)
+    response = client.post('/notes', json=payload)
     json_data = response.get_json()
 
     assert response.status_code == 201
