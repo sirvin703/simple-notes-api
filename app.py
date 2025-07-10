@@ -44,8 +44,8 @@ def get_note(note_id):
 
 
 # Forced code quality error
-#def code_quality_error():
-#print("This isn't going to work")
+# def code_quality_error():
+# print("This isn't going to work")
 
 
 if __name__ == '__main__':
