@@ -48,13 +48,5 @@ pipeline {
                 		'''
             		}
         	}
-
-        	stage('Build') {
-            		steps {
-                		bat '''
-                		call venv\\Scripts\\activate && python app.py
-                		'''
-            		}
-        	}
-	}
+       	}
 }
