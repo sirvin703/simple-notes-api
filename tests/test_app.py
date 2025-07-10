@@ -62,3 +62,8 @@ def test_get_nonexistent_note():
     client = app.test_client()
     response = client.get('/notes/9999')
     assert response.status_code == 404
+
+# Failure Test
+def test_intentional_failure():
+    assert 1 == 2
+

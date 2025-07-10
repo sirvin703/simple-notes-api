@@ -38,8 +38,5 @@ def get_note(note_id):
         abort(404, description="Note not found")
     return jsonify(note)
 
-def broken_func():
-print("oops bad indent")
-
 if __name__ == '__main__':
     app.run(debug=True)
