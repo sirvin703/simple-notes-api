@@ -20,7 +20,7 @@ pipeline {
 		stage('Code Quality') {
             		steps {
                 		bat '''
-                		call venv\\Scripts\\activate && flake8 --version && flake8 app.py tests/ || exit 1
+                		call venv\\Scripts\\activate && flake8 app.py tests/ || exit 1
                 		'''
             		}
        		}
