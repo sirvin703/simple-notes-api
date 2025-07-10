@@ -1,15 +1,10 @@
-import sys
-import os
-from app import app
-
-base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.insert(0, base_dir)
+import app
 
 
 # Test 1
 def test_get_notes_initially_empty():
     # creates test client and checks for empty list; expects 200
-    client = app.test_client()
+    client = app.app.test_client()
     response = client.get('/notes')
     assert response.status_code == 200
     assert response.get_json() == []
@@ -18,12 +13,12 @@ def test_get_notes_initially_empty():
 # Test 2
 def test_create_note():
     # posts JSON payload and checks returned fields; expects 201
-    client = app.test_client()
+    client = app.app.test_client()
     payload = {
         "title": "Test Note",
         "content": "This is a test note."
     }
-    response = client.post('/notes', json=payload)
+    response = client.app.post('/notes', json=payload)
     json_data = response.get_json()
 
     assert response.status_code == 201
@@ -35,7 +30,7 @@ def test_create_note():
 # Test 3
 def test_get_notes_after_creation():
     # adds a note, gets /notes and checks the note is there; expects 200
-    client = app.test_client()
+    client = app.app.test_client()
     payload = {
         "title": "Note 1",
         "content": "Content 1"
@@ -51,7 +46,7 @@ def test_get_notes_after_creation():
 # Test 4
 def test_get_single_note():
     # posts a note, then fetches it by its ID; expects 200
-    client = app.test_client()
+    client = app.app.test_client()
     payload = {
         "title": "Single Note",
         "content": "Content"
@@ -69,7 +64,7 @@ def test_get_single_note():
 # Test 5
 def test_get_nonexistent_note():
     # tries to retrieve a note that doesn't exist; expects 404
-    client = app.test_client()
+    client = app.app.test_client()
     response = client.get('/notes/9999')
     assert response.status_code == 404
 
