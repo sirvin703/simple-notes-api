@@ -1,5 +1,6 @@
 from app import app
 
+
 # Test 1
 def test_get_notes_initially_empty():
     # creates test client and checks for empty list; expects 200
@@ -7,6 +8,7 @@ def test_get_notes_initially_empty():
     response = client.get('/notes')
     assert response.status_code == 200
     assert response.get_json() == []
+
 
 # Test 2
 def test_create_note():
@@ -24,6 +26,7 @@ def test_create_note():
     assert json_data['content'] == "This is a test note."
     assert 'id' in json_data
 
+
 # Test 3
 def test_get_notes_after_creation():
     # adds a note, gets /notes and checks the note is there; expects 200
@@ -38,6 +41,7 @@ def test_get_notes_after_creation():
     notes = response.get_json()
     assert response.status_code == 200
     assert any(note["title"] == "Note 1" for note in notes)
+
 
 # Test 4
 def test_get_single_note():
@@ -56,6 +60,7 @@ def test_get_single_note():
     assert response.status_code == 200
     assert json_data["title"] == "Single Note"
 
+
 # Test 5
 def test_get_nonexistent_note():
     # tries to retrieve a note that doesn't exist; expects 404
@@ -63,7 +68,7 @@ def test_get_nonexistent_note():
     response = client.get('/notes/9999')
     assert response.status_code == 404
 
+
 # Failure Test
 def test_intentional_failure():
     assert 1 == 2
-
