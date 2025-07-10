@@ -20,7 +20,7 @@ pipeline {
 		stage('Code Quality') {
             		steps {
                 		bat '''
-                		call venv\\Scripts\\activate && flake8 app.py tests/ || exit 1
+                		call venv\\Scripts\\activate && flake8 app.py test_app.py || exit 1
                 		'''
             		}
        		}
@@ -28,7 +28,7 @@ pipeline {
         	stage('Test') {
             		steps {
                 		bat '''
-                		call venv\\Scripts\\activate && pytest --cov=app --cov-report=xml || exit 1
+                		call venv\\Scripts\\activate && pytest test_app.py --cov=app --cov-report=xml || exit 1
                 		'''
             		}
         	}
