@@ -61,5 +61,5 @@ def test_get_nonexistent_note():
 
 
 # Failure Test
-# def test_intentional_failure():
-#    assert 1 == 2
+def test_intentional_failure():
+    assert 1 == 2
